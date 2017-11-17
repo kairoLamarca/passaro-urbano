@@ -1,4 +1,5 @@
 import { Oferta } from './shared/oferta.model';
+import { promise } from 'selenium-webdriver';
 
 export class OfertasService {
 
@@ -55,5 +56,13 @@ export class OfertasService {
 
     public getOfertas(): Array<any> {
         return this.ofertas;
+    }
+
+    public getOfertas2(): Promise<Oferta[]> {
+        return new Promise((resolve, reject) => {
+            //algum tipo de precessamento, que ao finalizar , chama a função resolve ou reject
+            console.log('111');
+            resolve(this.ofertas);
+        });
     }
 }
