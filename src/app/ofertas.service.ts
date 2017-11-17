@@ -63,13 +63,24 @@ export class OfertasService {
             //algum tipo de precessamento, que ao finalizar , chama a função resolve ou reject
             //console.log('111');
 
-            let deu_certo = false;
+            let deu_certo = true;
 
             if (deu_certo) {
-                resolve(this.ofertas);
+                setTimeout(() => resolve(this.ofertas), 3000);
+                //resolve(this.ofertas);
             } else {
-                reject({ codigo_erro: 404, mensagem_erro: 'Servidor não encontrado'});
+                reject({ codigo_erro: 404, mensagem_erro: 'Servidor não encontrado' });
             }
+        })
+        .then((ofertas: Oferta[]) =>{
+            //fazer alguma tratativa antes de ir pro lugar que chamou
+            console.log('primeiro then');
+            return ofertas;
+        })
+        .then((ofertas: Oferta[]) =>{
+            //faz outra tratativa
+            console.log('segundo then');
+            return ofertas;
         });
     }
 }
