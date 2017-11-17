@@ -21,9 +21,12 @@ export class HomeComponent implements OnInit {
 
     this.ofertasService.getOfertas2()
       .then(
-        ( ofertas: Oferta[] ) => { this.ofertas = ofertas;},//executa uma ação quando a promise for resolve -- //ofertas foi passado por parametro no resolve da promise              
-        ( param: any ) => { console.log(param) }//segundo parametro é o reject
+        ( ofertas: Oferta[] ) => { this.ofertas = ofertas;}//executa uma ação quando a promise for resolve -- //ofertas foi passado por parametro no resolve da promise              
+        //,( param: any ) => { console.log(param) }//segundo parametro é o reject
       )
+      .catch(( param: any) =>{//pega o reject da promise
+        console.log(param);
+      })
   }
 
 }
