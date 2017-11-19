@@ -6,3 +6,6 @@ npm install popper.js --save
 ng g c topo --spec=false
 ng g c home --spec=false
 ng g c rodape --spec=false
+
+npm install -g json-server
+json-server --watch banco-de-dados.json
