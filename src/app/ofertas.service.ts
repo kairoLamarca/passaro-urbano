@@ -7,9 +7,9 @@ import 'rxjs/add/operator/toPromise';//importar o metodo toPromise da lib rxjs
 @Injectable()//Injetando para a classe ter acesso ao http externo do angular
 export class OfertasService {
 
-    constructor(private http: Http) {
+    private url_api = 'http://localhost:3000/ofertas'
 
-    }
+    constructor(private http: Http) {}
 
     // public ofertas: Oferta[] = [
     //     {
@@ -62,14 +62,6 @@ export class OfertasService {
     //     }
     // ]
 
-    public getOfertas(): Promise<Oferta[]> {
-        //efetuar uma requisição http
-        return this.http.get('http://localhost:3000/ofertas?destaque=true')//retorna observable
-            .toPromise()
-            .then((resposta: any) => resposta.json());
-        //retornar um promise oferta[]
-    }
-
     // public getOfertas2(): Promise<Oferta[]> {
     //     return new Promise((resolve, reject) => {
     //         //algum tipo de precessamento, que ao finalizar , chama a função resolve ou reject
@@ -102,14 +94,22 @@ export class OfertasService {
     //         })
     // }
 
+    public getOfertas(): Promise<Oferta[]> {
+        //efetuar uma requisição http
+        return this.http.get(`${this.url_api}?destaque=true`)//retorna observable
+            .toPromise()
+            .then((resposta: any) => resposta.json());
+        //retornar um promise oferta[]
+    }
+
     public getOfertasPorCategoria(categoria: string): Promise<Oferta[]> {
-        return this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`)
+        return this.http.get(`${this.url_api}?categoria=${categoria}`)
             .toPromise()
             .then((resposta: any) => resposta.json());
     }
 
     public getOfertaPorId(id: number): Promise<Oferta> {
-        return this.http.get(`http://localhost:3000/ofertas?id=${id}`)
+        return this.http.get(`${this.url_api}?id=${id}`)
             .toPromise()
             .then((resposta: any) => resposta.json()[0]);
     }
