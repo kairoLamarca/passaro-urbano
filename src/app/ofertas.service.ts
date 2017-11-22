@@ -2,14 +2,15 @@ import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Oferta } from './shared/oferta.model';
 import { promise } from 'selenium-webdriver';
+import { URL_API } from './app.api';
 import 'rxjs/add/operator/toPromise';//importar o metodo toPromise da lib rxjs
 
 @Injectable()//Injetando para a classe ter acesso ao http externo do angular
 export class OfertasService {
 
-    private url_api = 'http://localhost:3000/ofertas'
+    //private url_api = 'http://localhost:3000/ofertas'
 
-    constructor(private http: Http) {}
+    constructor(private http: Http) { }
 
     // public ofertas: Oferta[] = [
     //     {
@@ -96,20 +97,20 @@ export class OfertasService {
 
     public getOfertas(): Promise<Oferta[]> {
         //efetuar uma requisição http
-        return this.http.get(`${this.url_api}?destaque=true`)//retorna observable
+        return this.http.get(`${URL_API}?destaque=true`)//retorna observable
             .toPromise()
             .then((resposta: any) => resposta.json());
         //retornar um promise oferta[]
     }
 
     public getOfertasPorCategoria(categoria: string): Promise<Oferta[]> {
-        return this.http.get(`${this.url_api}?categoria=${categoria}`)
+        return this.http.get(`${URL_API}?categoria=${categoria}`)
             .toPromise()
             .then((resposta: any) => resposta.json());
     }
 
     public getOfertaPorId(id: number): Promise<Oferta> {
-        return this.http.get(`${this.url_api}?id=${id}`)
+        return this.http.get(`${URL_API}?id=${id}`)
             .toPromise()
             .then((resposta: any) => resposta.json()[0]);
     }
