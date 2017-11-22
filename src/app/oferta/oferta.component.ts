@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';//importar para usar o snapshot de rota
 
 @Component({
   selector: 'app-oferta',
@@ -8,9 +9,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class OfertaComponent implements OnInit {
 
-  constructor() { }
+  //private route: ActivatedRoute;
+
+  constructor(private route: ActivatedRoute) { //já cria como um atributo da classe
+    //this.route = route;
+  }
 
   ngOnInit() {
+    console.log('ID recuperado da rota: ', this.route.snapshot.params['id']);//parametro configurado de acordo com as rotas configuradas
   }
 
 }
