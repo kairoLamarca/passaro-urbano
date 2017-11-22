@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';//importar para usar o snapshot de rota
+import { ActivatedRoute } from '@angular/router';//importar para poder pegar a rota ativa e recuperar os parametros
 
 @Component({
   selector: 'app-oferta',
@@ -16,7 +16,14 @@ export class OfertaComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('ID recuperado da rota: ', this.route.snapshot.params['id']);//parametro configurado de acordo com as rotas configuradas
+    //utilizando snapshot
+    //console.log('ID recuperado da rota: ', this.route.snapshot.params['id']);//parametro configurado de acordo com as rotas configuradas
+
+    //utilizando subscribe
+    this.route.params.subscribe((parametro: any) => {
+      console.log(parametro.id);//retorna um objeto literal com todos os parametros
+    });
+
   }
 
 }
