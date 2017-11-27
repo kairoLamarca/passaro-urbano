@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';//importar para poder pegar a r
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 import 'rxjs/Rx';
+
 
 @Component({
   selector: 'app-oferta',
@@ -36,7 +38,7 @@ export class OfertaComponent implements OnInit {
     this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
       .then((oferta: Oferta) => {
         this.oferta = oferta;
-        console.log(this.oferta);
+        //console.log(this.oferta);
       });
 
     // this.route.params.subscribe(//observable
@@ -45,11 +47,22 @@ export class OfertaComponent implements OnInit {
     //   () => console.log('Processamento foi classificado como concluído!')
     // )
 
-    let tempo = Observable.interval(2000)
+    // let tempo = Observable.interval(2000)
 
-    tempo.subscribe((intervalo: number) => {
-      console.log(intervalo);
+    // tempo.subscribe((intervalo: number) => {
+    //   console.log(intervalo);
+    // });
+
+    //observable (observável)
+    let meuObservableTeste = Observable.create((observer: Observer<string>) => { 
+      observer.next('Primeiro evento da stream')
+      observer.next('Segundo evento da stream')
     });
+
+    //observable (observador)
+    meuObservableTeste.subscribe(
+      (resultado: any) => console.log(resultado)
+    );
   }
 
 }
