@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';//importar para poder pegar a rota ativa e recuperar os parametros
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-oferta',
@@ -32,10 +33,18 @@ export class OfertaComponent implements OnInit {
     // });
 
     this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
-      .then((oferta: Oferta) =>{
+      .then((oferta: Oferta) => {
         this.oferta = oferta;
         console.log(this.oferta);
       });
+
+    // this.route.params.subscribe(//observable
+    //   (parametro: any) => { console.log(parametro) },
+    //   (erro: any) => console.log(erro),
+    //   () => console.log('Processamento foi classificado como concluído!')
+    // )
+
+    
   }
 
 }
