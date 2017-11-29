@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';//importar para poder pegar a rota ativa e recuperar os parametros
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/Rx';
-
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-oferta',
@@ -14,8 +14,10 @@ import 'rxjs/Rx';
   encapsulation: ViewEncapsulation.None,
   providers: [OfertasService]
 })
-export class OfertaComponent implements OnInit {
+export class OfertaComponent implements OnInit, OnDestroy {
 
+  private tempoOnservableSubscription: Subscription;
+  private meuObservableTesteSubscription: Subscription;
   //private route: ActivatedRoute;
   public oferta: Oferta;
 
@@ -47,11 +49,11 @@ export class OfertaComponent implements OnInit {
     //   () => console.log('Processamento foi classificado como concluído!')
     // )
 
-    // let tempo = Observable.interval(2000)
+    let tempo = Observable.interval(2000)
 
-    // tempo.subscribe((intervalo: number) => {
-    //   console.log(intervalo);
-    // });
+    this.tempoOnservableSubscription = tempo.subscribe((intervalo: number) => {
+      console.log(intervalo);
+    });
 
     //observable (observável)
     let meuObservableTeste = Observable.create((observer: Observer<string>) => { 
@@ -63,11 +65,15 @@ export class OfertaComponent implements OnInit {
     });
 
     //observable (observador)
-    meuObservableTeste.subscribe(
+    this.meuObservableTesteSubscription = meuObservableTeste.subscribe(
       (resultado: any) => console.log(resultado),//recebe o next
       (erro: string) => console.log(erro),//segundo parametro recebe o error
       () => console.log('stream de eventos foi finalizada')//terceiro parametro recebe o complete
     );
   }
 
+  ngOnDestroy(){//No momento que o componente for finalizado, ele vai matar os observables para que eles não continuem executando
+    this.meuObservableTesteSubscription.unsubscribe();
+    this.tempoOnservableSubscription.unsubscribe();
+  }
 }
