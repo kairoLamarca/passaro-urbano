@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Oferta } from './shared/oferta.model';
 import { promise } from 'selenium-webdriver';
@@ -101,26 +101,26 @@ export class OfertasService {
         //efetuar uma requisição http
         return this.http.get(`${URL_API}/ofertas?destaque=true`)//retorna observable
             .toPromise()
-            .then((resposta: any) => resposta.json());
+            .then((resposta: Response) => resposta.json());
         //retornar um promise oferta[]
     }
 
     public getOfertasPorCategoria(categoria: string): Promise<Oferta[]> {
         return this.http.get(`${URL_API}/ofertas?categoria=${categoria}`)
             .toPromise()
-            .then((resposta: any) => resposta.json());
+            .then((resposta: Response) => resposta.json());
     }
 
     public getOfertaPorId(id: number): Promise<Oferta> {
         return this.http.get(`${URL_API}/ofertas?id=${id}`)
             .toPromise()
-            .then((resposta: any) => resposta.json()[0]);
+            .then((resposta: Response) => resposta.json()[0]);
     }
 
     public getComoUsarOfertaPorId(id: number): Promise<string> {
         return this.http.get(`${URL_API}/como-usar?id=${id}`)
             .toPromise()
-            .then((resposta: any) => {
+            .then((resposta: Response) => {
                 return resposta.json()[0].descricao;
             });
     }
@@ -128,7 +128,7 @@ export class OfertasService {
     public getOndeFicaOfertaPorId(id: number): Promise<string> {
         return this.http.get(`${URL_API}/onde-fica?id=${id}`)
             .toPromise()
-            .then((resposta: any) => {
+            .then((resposta: Response) => {
                 return resposta.json()[0].descricao;
             });
     }
@@ -136,6 +136,6 @@ export class OfertasService {
     public pesquisaOfertas(termo: string): Observable<Oferta[]> {
         return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
             .retry(10)//tentar novamente se houver falha
-            .map((resposta: any) => resposta.json());//pega cada evento disparado pelo observable
+            .map((resposta: Response) => resposta.json());//pega cada evento disparado pelo observable
     }
 }
