@@ -135,6 +135,7 @@ export class OfertasService {
 
     public pesquisaOfertas(termo: string): Observable<Oferta[]> {
         return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
+            .retry(10)//tentar novamente se houver falha
             .map((resposta: any) => resposta.json());//pega cada evento disparado pelo observable
     }
 }

@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
       //,( param: any ) => { console.log(param) }//segundo parametro é o reject
     )
     .catch(( param: any) =>{//pega o reject da promise
-      console.log(param);
+      //console.log(param);
     })
   }
 
