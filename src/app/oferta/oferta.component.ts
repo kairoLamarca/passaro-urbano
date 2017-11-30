@@ -16,8 +16,9 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class OfertaComponent implements OnInit, OnDestroy {
 
-  private tempoOnservableSubscription: Subscription;
-  private meuObservableTesteSubscription: Subscription;
+  //private tempoOnservableSubscription: Subscription;
+  //private meuObservableTesteSubscription: Subscription;
+  
   //private route: ActivatedRoute;
   public oferta: Oferta;
 
@@ -49,31 +50,31 @@ export class OfertaComponent implements OnInit, OnDestroy {
     //   () => console.log('Processamento foi classificado como concluído!')
     // )
 
-    let tempo = Observable.interval(2000)
+    // let tempo = Observable.interval(2000)
 
-    this.tempoOnservableSubscription = tempo.subscribe((intervalo: number) => {
-      console.log(intervalo);
-    });
+    // this.tempoOnservableSubscription = tempo.subscribe((intervalo: number) => {
+    //   console.log(intervalo);
+    // });
 
-    //observable (observável)
-    let meuObservableTeste = Observable.create((observer: Observer<string>) => { 
-      observer.next('Primeiro evento da stream');
-      observer.next('Segundo evento da stream');
-      //observer.error('algum erro foi encontrado na stream de eventos');
-      observer.complete();
-      observer.next('Terceiro evento da stream');// evento após o erro não funciona, pq ela é interrompida, tem que reiniciar
-    });
+    // //observable (observável)
+    // let meuObservableTeste = Observable.create((observer: Observer<string>) => { 
+    //   observer.next('Primeiro evento da stream');
+    //   observer.next('Segundo evento da stream');
+    //   //observer.error('algum erro foi encontrado na stream de eventos');
+    //   observer.complete();
+    //   observer.next('Terceiro evento da stream');// evento após o erro não funciona, pq ela é interrompida, tem que reiniciar
+    // });
 
-    //observable (observador)
-    this.meuObservableTesteSubscription = meuObservableTeste.subscribe(
-      (resultado: any) => console.log(resultado),//recebe o next
-      (erro: string) => console.log(erro),//segundo parametro recebe o error
-      () => console.log('stream de eventos foi finalizada')//terceiro parametro recebe o complete
-    );
+    // //observable (observador)
+    // this.meuObservableTesteSubscription = meuObservableTeste.subscribe(
+    //   (resultado: any) => console.log(resultado),//recebe o next
+    //   (erro: string) => console.log(erro),//segundo parametro recebe o error
+    //   () => console.log('stream de eventos foi finalizada')//terceiro parametro recebe o complete
+    // );
   }
 
   ngOnDestroy(){//No momento que o componente for finalizado, ele vai matar os observables para que eles não continuem executando
-    this.meuObservableTesteSubscription.unsubscribe();
-    this.tempoOnservableSubscription.unsubscribe();
+    //this.meuObservableTesteSubscription.unsubscribe();
+    //this.tempoOnservableSubscription.unsubscribe();
   }
 }
