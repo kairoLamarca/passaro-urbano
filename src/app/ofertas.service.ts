@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Oferta } from './shared/oferta.model';
 import { promise } from 'selenium-webdriver';
 import { URL_API } from './app.api';
-import 'rxjs/add/operator/toPromise';//importar o metodo toPromise da lib rxjs
+import 'rxjs/add/operator/toPromise';//importar o operado toPromise da lib rxjs
+import 'rxjs/add/operator/map';//importar o operador map da lib rxjs
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()//Injetando para a classe ter acesso ao http externo do angular
 export class OfertasService {
@@ -129,5 +131,10 @@ export class OfertasService {
             .then((resposta: any) => {
                 return resposta.json()[0].descricao;
             });
+    }
+
+    public pesquisaOfertas(termo: string): Observable<Oferta[]> {
+        return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
+            .map((resposta: any) => resposta.json());//pega cada evento disparado pelo observable
     }
 }

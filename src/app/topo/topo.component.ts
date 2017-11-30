@@ -1,14 +1,20 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { OfertasService } from '../ofertas.service';
+import { Observable } from 'rxjs/Observable';
+import { Oferta } from '../shared/oferta.model';
 
 @Component({
   selector: 'app-topo',
   templateUrl: './topo.component.html',
   styleUrls: ['./topo.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [OfertasService]
 })
 export class TopoComponent implements OnInit {
 
-  constructor() { }
+  public ofertas: Observable<Oferta[]>;
+
+  constructor(private ofertasService: OfertasService) { }
 
   ngOnInit() {
   }
@@ -17,8 +23,11 @@ export class TopoComponent implements OnInit {
   //   console.log((<HTMLInputElement>event.target).value);
   // }
 
-  public pesquisa(termoDaBusca: string): void{
-    console.log(termoDaBusca);
+  public pesquisa(termoDaBusca: string): void {
+    this.ofertas = this.ofertasService.pesquisaOfertas(termoDaBusca);
+    this.ofertas.subscribe(
+      (ofertas: Oferta[]) => console.log(ofertas)
+    )
   }
 
 }
