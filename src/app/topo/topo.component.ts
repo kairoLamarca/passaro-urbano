@@ -3,7 +3,7 @@ import { OfertasService } from '../ofertas.service';
 import { Observable } from 'rxjs/Observable';
 import { Oferta } from '../shared/oferta.model';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/switchMap'/
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-topo',
@@ -21,7 +21,12 @@ export class TopoComponent implements OnInit {
 
   ngOnInit() {
     this.ofertas = this.subjectPesquisa //retorno Oferta[]
-      .switchMap();
+      .switchMap((termo: string) => {//sera executado toda vez que o next for chamado
+        console.log('requisição http para api ');
+        return this.ofertasService.pesquisaOfertas(termo)
+      });
+    
+    this.ofertas.subscribe((ofertas: Oferta[]) => console.log(ofertas)); //ofertas é um subject que eu chamo pelo subscribe
   }
 
   // public pesquisa(event: Event): void{
@@ -36,7 +41,8 @@ export class TopoComponent implements OnInit {
     //   () => console.log('Fluxo de eventos completo')//terceiro paraemtro é a conclusão
     // )
 
-    this.subjectPesquisa.next(termoDaBusca)
+    console.log('keyup caracter: ', termoDaBusca);
+    this.subjectPesquisa.next(termoDaBusca);
   }
 
 }
