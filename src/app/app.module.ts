@@ -19,6 +19,9 @@ import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 registerLocaleData(ptBr);
 
+//pipe
+import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,14 +32,15 @@ registerLocaleData(ptBr);
     DiversaoComponent,
     OfertaComponent,
     ComoUsarComponent,
-    OndeFicaComponent
+    OndeFicaComponent,
+    DescricaoReduzida
   ],
   imports: [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot(ROUTES)//mapeamento de rotas global pra aplicação
   ],
-  providers: [ { provide: LOCALE_ID, useValue: 'pt-Br'} ],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-Br' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
