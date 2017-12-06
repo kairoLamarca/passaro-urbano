@@ -9,3 +9,5 @@ ng g c rodape --spec=false
 
 npm install -g json-server
 json-server --watch banco-de-dados.json
+
+npm install --save intl
