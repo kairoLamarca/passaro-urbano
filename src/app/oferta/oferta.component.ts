@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';//importar para poder pegar a rota ativa e recuperar os parametros
+import { ActivatedRoute, Params } from '@angular/router';//importar para poder pegar a rota ativa e recuperar os parametros
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +18,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
 
   //private tempoOnservableSubscription: Subscription;
   //private meuObservableTesteSubscription: Subscription;
-  
+
   //private route: ActivatedRoute;
   public oferta: Oferta;
 
@@ -38,11 +38,21 @@ export class OfertaComponent implements OnInit, OnDestroy {
     //   console.log(parametro.id);//retorna um objeto literal com todos os parametros
     // });
 
-    this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
-      .then((oferta: Oferta) => {
-        this.oferta = oferta;
-        //console.log(this.oferta);
-      });
+    this.route.params.subscribe((parametros: Params) => {
+
+      this.ofertasService.getOfertaPorId(parametros.id)//recupera o ID atualizado da rota
+        .then((oferta: Oferta) => {
+          this.oferta = oferta;
+          //console.log(this.oferta);
+        });
+
+    })
+
+    // this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
+    //   .then((oferta: Oferta) => {
+    //     this.oferta = oferta;
+    //     //console.log(this.oferta);
+    //   });
 
     // this.route.params.subscribe(//observable
     //   (parametro: any) => { console.log(parametro) },
@@ -73,7 +83,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
     // );
   }
 
-  ngOnDestroy(){//No momento que o componente for finalizado, ele vai matar os observables para que eles não continuem executando
+  ngOnDestroy() {//No momento que o componente for finalizado, ele vai matar os observables para que eles não continuem executando
     //this.meuObservableTesteSubscription.unsubscribe();
     //this.tempoOnservableSubscription.unsubscribe();
   }
