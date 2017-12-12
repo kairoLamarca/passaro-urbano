@@ -11,3 +11,5 @@ npm install -g json-server
 json-server --watch banco-de-dados.json
 
 npm install --save intl
+
+npm uninstall bootstrap //comando para desinstalar um pacote
