@@ -194,25 +194,18 @@
       "id": 1
     },
     {
-      "endereco": "fsdsdfsd",
-      "numero": "sdfsdf",
-      "complemento": "sdfsdfsd",
+      "endereco": "fffffffff",
+      "numero": "122345",
+      "complemento": "fdggfdgdfsgsd",
       "formaPagamento": "debito",
       "id": 2
     },
     {
-      "endereco": "dssadas",
-      "numero": "asdasd",
-      "complemento": "asdsad",
-      "formaPagamento": "debito",
+      "endereco": "rrrrrrr",
+      "numero": "nnnn",
+      "complemento": "cccc",
+      "formaPagamento": "dinheiro",
       "id": 3
-    },
-    {
-      "endereco": "dfsfsd",
-      "numero": "sdfsdfsd",
-      "complemento": "sdfsdfds",
-      "formaPagamento": "debito",
-      "id": 4
     }
   ]
 }
