@@ -14,6 +14,8 @@ export class OrdemCompraComponent implements OnInit {
   //permite decorar um atributo da classe com os valores contidos em uma variavel de referencia do template
   @ViewChild('formulario') public f: NgForm;
 
+  public idPedidoCompra: number;
+
   constructor(private ordemCompraService: OrdemCompraService) { }
 
   ngOnInit() {
@@ -31,7 +33,7 @@ export class OrdemCompraComponent implements OnInit {
 
     this.ordemCompraService.efetivarCompra(pedido)
       .subscribe((idPedido: number) =>{
-        console.log('Pedido cadastrado com sucesso! ID do Pedido: ' + idPedido);
+        this.idPedidoCompra = idPedido;
       });
   }
 }
