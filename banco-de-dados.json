@@ -192,6 +192,27 @@
       "complemento": "salão",
       "formaPagamento": "dinheiro",
       "id": 1
+    },
+    {
+      "endereco": "fsdsdfsd",
+      "numero": "sdfsdf",
+      "complemento": "sdfsdfsd",
+      "formaPagamento": "debito",
+      "id": 2
+    },
+    {
+      "endereco": "dssadas",
+      "numero": "asdasd",
+      "complemento": "asdsad",
+      "formaPagamento": "debito",
+      "id": 3
+    },
+    {
+      "endereco": "dfsfsd",
+      "numero": "sdfsdfsd",
+      "complemento": "sdfsdfds",
+      "formaPagamento": "debito",
+      "id": 4
     }
   ]
 }

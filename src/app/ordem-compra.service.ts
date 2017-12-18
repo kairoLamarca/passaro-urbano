@@ -20,6 +20,6 @@ export class OrdemCompraService {
             JSON.stringify(pedido),
             new RequestOptions({ headers: headers })
         )
-            .map((resposta: Response) => console.log(resposta.json()));
+            .map((resposta: Response) => resposta.json().id);
     }
 }
