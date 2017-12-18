@@ -2,7 +2,8 @@
   <div class="ordem-compra">
     <!-- ngForm para o formulário e ngModel para os campos -->
     <!-- ngModel precisa do name -->
-    <form novalidate #formulario="ngForm">
+    <!-- ngSubmit pega o submit do button do form -->
+    <form novalidate #formulario="ngForm" (ngSubmit)="confirmarCompra(formulario)">
     
       <h5>Sua Compra</h5>
       <hr />
@@ -133,8 +134,8 @@
 
       <hr />
       <button 
-        type="button" 
-        class="btn btn-primary btn-lg"
+        type="submit" 
+        class="btn btn-primary btn-lg"        
       >Cofirmar compra</button>
     </form>
   </div>
