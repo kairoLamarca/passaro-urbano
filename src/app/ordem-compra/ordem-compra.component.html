@@ -1,7 +1,7 @@
 <div class="container">
   <div class="ordem-compra">
     <!-- [formGroup]="formulario" - referencia esse formulario com o formulario criado na classe -->
-    <form [formGroup]="formulario" novalidate>
+    <form [formGroup]="formulario" novalidate (ngSubmit)="confirmarCompra()">
     
       <h5>Sua Compra</h5>
       <hr />
