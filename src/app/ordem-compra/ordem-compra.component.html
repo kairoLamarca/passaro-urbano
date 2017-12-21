@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="ordem-compra">
+  <div class="ordem-compra" *ngIf="idPedidoCompra === undefined">
     <!-- [formGroup]="formulario" - referencia esse formulario com o formulario criado na classe -->
     <form [formGroup]="formulario" novalidate (ngSubmit)="confirmarCompra()">
     
@@ -130,5 +130,9 @@
         class="btn btn-primary btn-lg"        
       >Cofirmar compra</button>
     </form>
+  </div>
+
+  <div class="ordem-compra" *ngIf="idPedidoCompra !== undefined">
+    <app-ordem-compra-sucesso [idPedidoCompra]="idPedidoCompra"></app-ordem-compra-sucesso>
   </div>
 </div>
