@@ -40,8 +40,6 @@ export class OfertaComponent implements OnInit, OnDestroy {
     //   console.log(parametro.id);//retorna um objeto literal com todos os parametros
     // });
 
-    console.log('Oferta Array: ', this.carrinhoService.exibirItens());
-
     this.route.params.subscribe((parametros: Params) => {
 
       this.ofertasService.getOfertaPorId(parametros.id)//recupera o ID atualizado da rota
@@ -90,5 +88,9 @@ export class OfertaComponent implements OnInit, OnDestroy {
   ngOnDestroy() {//No momento que o componente for finalizado, ele vai matar os observables para que eles não continuem executando
     //this.meuObservableTesteSubscription.unsubscribe();
     //this.tempoOnservableSubscription.unsubscribe();
+  }
+
+  public adicionarItemCarrinho(): void{
+    this.carrinhoService.incluirItem(this.oferta);
   }
 }
