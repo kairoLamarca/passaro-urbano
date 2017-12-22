@@ -6,13 +6,14 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/Rx';
 import { Subscription } from 'rxjs/Subscription';
+import CarrinhoService from '../carrinho.service'
 
 @Component({
   selector: 'app-oferta',
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.css'],
   encapsulation: ViewEncapsulation.None,
-  providers: [OfertasService]
+  providers: [OfertasService, CarrinhoService]
 })
 export class OfertaComponent implements OnInit, OnDestroy {
 
@@ -24,7 +25,8 @@ export class OfertaComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private ofertasService: OfertasService
+    private ofertasService: OfertasService,
+    private carrinhoService: CarrinhoService
   ) { //já cria como um atributo da classe
     //this.route = route;    
   }
@@ -37,6 +39,8 @@ export class OfertaComponent implements OnInit, OnDestroy {
     // this.route.params.subscribe((parametro: any) => {
     //   console.log(parametro.id);//retorna um objeto literal com todos os parametros
     // });
+
+    console.log('Oferta Array: ', this.carrinhoService.exibirItens());
 
     this.route.params.subscribe((parametros: Params) => {
 
