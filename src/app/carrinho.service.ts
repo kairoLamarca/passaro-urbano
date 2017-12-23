@@ -24,9 +24,19 @@ class CarrinhoService {
 
         if (itemCarrinhoEncontrado) {
             itemCarrinhoEncontrado.quantidade += 1;
-        } else{
+        } else {
             this.itens.push(itemCarrinho);
-        }        
+        }
+    }
+
+    public totalCarrinhoCompras(): number {
+        let total: number = 0;
+
+        this.itens.map((item: ItemCarrinho) => {
+            total = total + (item.valor * item.quantidade);
+        });
+
+        return total;
     }
 }
 
