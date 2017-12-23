@@ -6,14 +6,14 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/Rx';
 import { Subscription } from 'rxjs/Subscription';
-import CarrinhoService from '../carrinho.service'
+import { CarrinhoService } from '../carrinho.service'
 
 @Component({
   selector: 'app-oferta',
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.css'],
   encapsulation: ViewEncapsulation.None,
-  providers: [OfertasService, CarrinhoService]
+  providers: [OfertasService]
 })
 export class OfertaComponent implements OnInit, OnDestroy {
 
@@ -92,5 +92,6 @@ export class OfertaComponent implements OnInit, OnDestroy {
 
   public adicionarItemCarrinho(): void{
     this.carrinhoService.incluirItem(this.oferta);
+    console.log(this.carrinhoService.exibirItens());
   }
 }
