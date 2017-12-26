@@ -33,8 +33,8 @@ export class OrdemCompraComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.itensCarrinho = this.carrinhoService.exibirItens();  
-    console.log(this.itensCarrinho);  
+    this.itensCarrinho = this.carrinhoService.exibirItens();
+    console.log(this.itensCarrinho);
   }
 
   public confirmarCompra(): void {
@@ -45,25 +45,31 @@ export class OrdemCompraComponent implements OnInit {
       this.formulario.get('formaPagamento').markAsTouched();
     }
     else {
-      let pedido: Pedido = new Pedido(
-        this.formulario.value.endereco,
-        this.formulario.value.numero,
-        this.formulario.value.complemento,
-        this.formulario.value.formaPagamento
-      );
 
-      this.ordemCompraService.efetivarCompra(pedido)
-        .subscribe((idPedido: number) => {
-          this.idPedidoCompra = idPedido;
-        });
+      if (this.carrinhoService.exibirItens().length === 0) {
+        alert('Você não selecionou nenhum item');
+      } else {
+
+        let pedido: Pedido = new Pedido(
+          this.formulario.value.endereco,
+          this.formulario.value.numero,
+          this.formulario.value.complemento,
+          this.formulario.value.formaPagamento
+        );
+
+        this.ordemCompraService.efetivarCompra(pedido)
+          .subscribe((idPedido: number) => {
+            this.idPedidoCompra = idPedido;
+          });
+      }
     }
   }
 
-  public adicionar(item: ItemCarrinho): void{
+  public adicionar(item: ItemCarrinho): void {
     this.carrinhoService.adicionarQuantidade(item);
   }
 
-  public diminuir(item: ItemCarrinho): void{
+  public diminuir(item: ItemCarrinho): void {
     this.carrinhoService.diminuirQuantidade(item);
   }
 }
