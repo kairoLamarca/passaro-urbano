@@ -14,4 +14,6 @@ npm install --save intl
 
 npm uninstall bootstrap //comando para desinstalar um pacote
 
-npm unistall -g @angular/cli
+npm uninstall -g @angular/cli
+
+npm install -g @angular/cli
