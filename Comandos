@@ -13,3 +13,5 @@ json-server --watch banco-de-dados.json
 npm install --save intl
 
 npm uninstall bootstrap //comando para desinstalar um pacote
+
+npm unistall -g @angular/cli
