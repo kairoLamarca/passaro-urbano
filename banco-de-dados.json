@@ -194,39 +194,43 @@
       "id": 1
     },
     {
-      "endereco": "fffffffff",
-      "numero": "122345",
-      "complemento": "fdggfdgdfsgsd",
-      "formaPagamento": "debito",
-      "id": 2
-    },
-    {
-      "endereco": "rrrrrrr",
-      "numero": "nnnn",
-      "complemento": "cccc",
+      "endereco": "fefwef",
+      "numero": "fewfwe",
+      "complemento": "ewffwef",
       "formaPagamento": "dinheiro",
-      "id": 3
-    },
-    {
-      "endereco": "hdgasdg",
-      "numero": "fdhufushdui",
-      "complemento": "jbubuibui",
-      "formaPagamento": "debito",
-      "id": 4
-    },
-    {
-      "endereco": "fgggggggg",
-      "numero": "gggg",
-      "complemento": "ggggg",
-      "formaPagamento": "debito",
-      "id": 5
-    },
-    {
-      "endereco": "fdfsdfsd",
-      "numero": "sdfsdfsd",
-      "complemento": "sdfsdfsd",
-      "formaPagamento": "debito",
-      "id": 6
+      "itens": [
+        {
+          "id": 4,
+          "img": {
+            "url": "/assets/ofertas/4/img1.jpg"
+          },
+          "titulo": "Estância das águas",
+          "descricao_oferta": "Diversão garantida com piscinas, trilhas e muito mais.",
+          "valor": 31.9,
+          "quantidade": 2
+        },
+        {
+          "id": 6,
+          "img": {
+            "url": "/assets/ofertas/6/img1.jpg"
+          },
+          "titulo": "Academia de tiro",
+          "descricao_oferta": "Sessão de tiro dinâmico com Instrutor, Estande, Alvo e Equipamentos.",
+          "valor": 89.9,
+          "quantidade": 1
+        },
+        {
+          "id": 1,
+          "img": {
+            "url": "/assets/ofertas/1/img1.jpg"
+          },
+          "titulo": "Super Burger",
+          "descricao_oferta": "Rodízio de Mini-hambúrger com opção de entrada.",
+          "valor": 29.9,
+          "quantidade": 3
+        }
+      ],
+      "id": 2
     }
   ]
 }
