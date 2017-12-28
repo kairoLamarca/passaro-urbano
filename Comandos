@@ -17,3 +17,5 @@ npm uninstall bootstrap //comando para desinstalar um pacote
 npm uninstall -g @angular/cli
 
 npm install -g @angular/cli
+
+ng buil -- prod //criar o build de produção
